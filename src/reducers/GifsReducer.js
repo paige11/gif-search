@@ -1,6 +1,6 @@
 import {
-  SEARCH_GIFS,
-  FAVORITE_GIF
+  SEARCH,
+  FAVORITE
 } from '../actions/GifsActions';
 
 const defaultState = {
@@ -10,9 +10,9 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case SEARCH_GIFS:
-      return { ...state };
-    case FAVORITE_GIF:
+    case SEARCH:
+      return [];
+    case FAVORITE:
       return { ...state };
     default:
       return state;
