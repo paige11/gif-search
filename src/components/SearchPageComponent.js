@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import { Link } from "react-router-dom";
 // import StashButton from '../../components/StashButton';
+import SearchFormComponent from './SearchFormComponent';
 
-class SearchPage extends Component {
-  render() {
-    return (
-      <div>
+const SearchPageComponent = () => (
+  <div>
+    <h1>Search for Gifs</h1>
+  </div>
+);
 
-      </div>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {}
-}
-
-export default connect(mapStateToProps, null)(SearchPageComponent);
+export default SearchPageComponent;
