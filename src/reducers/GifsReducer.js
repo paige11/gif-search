@@ -9,11 +9,11 @@ const defaultState = {
 };
 
 const makeGifDisplayObjects = data => {
-  data.map(gif => {
+  return data.map(gif => {
     return {
       id: gif.id,
-      fixedWidthUrl: gif.images.fixed_width,
-      url: gif.images.url
+      fixedWidthUrl: gif.images.fixed_width.url,
+      description: gif.title
     }
   });
 }

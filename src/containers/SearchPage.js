@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchFormComponent from '../components/SearchFormComponent';
+import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
 import { getGifs } from '../actions/GifsActions';
 
 class SearchPage extends Component {
@@ -25,7 +26,7 @@ class SearchPage extends Component {
           handleSubmit={this.handleSubmit}
           searchTerm={this.state.searchTerm}
         />
-        <SearchResultsDisplay results={this.props.searchResults} />
+        <SearchResultsDisplayComponent results={this.props.searchResults} />
       </div>
     )
   }
