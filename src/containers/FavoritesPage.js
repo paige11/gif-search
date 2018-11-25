@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { retrieveGifsByIds, removeFavorite } from '../actions/GifsActions';
+import FavoritesDisplayComponent from '../components/FavoritesDisplayComponent';
 
 class FavoritesPage extends Component {
-  // TODO in constructor, use favorites string to get gifs from GiphyRequests new call
-  // TODO can reuse GifDisplayComponent to display favorites (click to show, remove from faves?)
+  componentDidMount = () => {
+    this.props.retrieveGifsByIds(this.props.favoritesIds);
+  }
 
   render() {
-    return <h1>hi</h1>
+    return (
+      <FavoritesDisplayComponent results={this.props.favoriteGifs} removeFavorite={this.props.removeFavorite} />
+    )
   }
 }
 
@@ -14,4 +19,4 @@ function mapStateToProps(state) {
   return { ...state.gifs };
 }
 
-export default connect(mapStateToProps)(FavoritesPage);
+export default connect(mapStateToProps, { retrieveGifsByIds, removeFavorite })(FavoritesPage);

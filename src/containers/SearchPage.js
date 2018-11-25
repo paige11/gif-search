@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchFormComponent from '../components/SearchFormComponent';
 import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
-import { getGifs, makeFavorite } from '../actions/GifsActions';
+import { getGifsBySearchTerm, makeFavorite } from '../actions/GifsActions';
+import { Link } from 'react-router-dom';
 
 class SearchPage extends Component {
   state = {
@@ -11,7 +12,7 @@ class SearchPage extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.getGifs(this.state.searchTerm);
+    this.props.getGifsBySearchTerm(this.state.searchTerm);
   }
 
   handleChange = e => {
@@ -21,6 +22,7 @@ class SearchPage extends Component {
   render() {
     return (
       <div>
+        <Link to="/favorites">Favorites</Link>
         <SearchFormComponent
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
@@ -36,4 +38,4 @@ function mapStateToProps(state) {
   return { ...state.gifs };
 }
 
-export default connect(mapStateToProps, { getGifs, makeFavorite })(SearchPage);
+export default connect(mapStateToProps, { getGifsBySearchTerm, makeFavorite })(SearchPage);

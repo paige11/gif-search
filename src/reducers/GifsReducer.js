@@ -1,11 +1,14 @@
 import {
   SEARCH,
-  FAVORITE
+  ADD_FAVORITE,
+  GET_FAVORITES,
+  REMOVE_FAVORITE
 } from '../actions/GifsActions';
 
 const defaultState = {
-  favorites: [],
-  searchResults: []
+  favoritesIds: [],
+  searchResults: [],
+  favoriteGifs: []
 };
 
 const makeGifDisplayObjects = data => {
@@ -23,8 +26,18 @@ export default function(state = defaultState, action) {
   switch (action.type) {
     case SEARCH:
       return { ...state, searchResults: makeGifDisplayObjects(action.payload.data) }
-    case FAVORITE:
-      return { ...state, favorites: [ ...state.favorites, action.payload ] }
+    case ADD_FAVORITE:
+      if (state.favoritesIds.indexOf(action.payload) === -1) {
+        return { ...state, favoritesIds: [ ...state.favoritesIds, action.payload ] }
+      }
+      return state;
+    case GET_FAVORITES:
+      return { ...state, favoriteGifs: makeGifDisplayObjects(action.payload.data) }
+    case REMOVE_FAVORITE:
+      if (state.favoritesIds.indexOf(action.payload) !== -1) {
+        return { ...state, favoritesIds: state.favoritesIds.filter(g => g !== action.payload) }
+      }
+      return state;
     default:
       return state;
   }
