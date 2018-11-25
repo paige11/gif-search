@@ -9,10 +9,16 @@ export const getGifs = term => dispatch => {
       res => {
         dispatch({
           type: SEARCH,
-          payload: res.data,
-          term
+          payload: res.data
         });
       },
       err => console.log(err)
     );
+}
+
+export const makeFavorite = id => {
+  return {
+    type: FAVORITE,
+    payload: id
+  }
 }

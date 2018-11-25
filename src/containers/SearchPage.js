@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SearchFormComponent from '../components/SearchFormComponent';
 import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
-import { getGifs } from '../actions/GifsActions';
+import { getGifs, makeFavorite } from '../actions/GifsActions';
 
 class SearchPage extends Component {
   state = {
@@ -26,7 +26,7 @@ class SearchPage extends Component {
           handleSubmit={this.handleSubmit}
           searchTerm={this.state.searchTerm}
         />
-        <SearchResultsDisplayComponent results={this.props.searchResults} />
+        <SearchResultsDisplayComponent results={this.props.searchResults} makeFavorite={this.props.makeFavorite} />
       </div>
     )
   }
@@ -36,4 +36,4 @@ function mapStateToProps(state) {
   return { ...state.gifs };
 }
 
-export default connect(mapStateToProps, { getGifs })(SearchPage);
+export default connect(mapStateToProps, { getGifs, makeFavorite })(SearchPage);

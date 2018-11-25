@@ -4,7 +4,7 @@ import {
 } from '../actions/GifsActions';
 
 const defaultState = {
-  favorites: {},
+  favorites: [],
   searchResults: []
 };
 
@@ -13,7 +13,8 @@ const makeGifDisplayObjects = data => {
     return {
       id: gif.id,
       fixedWidthUrl: gif.images.fixed_width.url,
-      description: gif.title
+      description: gif.title,
+      url: gif.images.original.url
     }
   });
 }
@@ -23,7 +24,7 @@ export default function(state = defaultState, action) {
     case SEARCH:
       return { ...state, searchResults: makeGifDisplayObjects(action.payload.data) }
     case FAVORITE:
-      return state;
+      return { ...state, favorites: [ ...state.favorites, action.payload ] }
     default:
       return state;
   }
