@@ -1,14 +1,17 @@
 import {
   SEARCH,
+  UPDATE_SEARCH_TERM,
   ADD_FAVORITE,
   GET_FAVORITES,
   REMOVE_FAVORITE
 } from '../actions/GifsActions';
+import _ from "lodash";
 
 const defaultState = {
-  favoritesIds: [],
+  searchTerm: '',
   searchResults: [],
-  favoriteGifs: []
+  favoritesIds: [],
+  favoriteGifs: [],
 };
 
 const makeGifDisplayObjects = data => {
@@ -26,6 +29,8 @@ export default function(state = defaultState, action) {
   switch (action.type) {
     case SEARCH:
       return { ...state, searchResults: makeGifDisplayObjects(action.payload.data) }
+    case UPDATE_SEARCH_TERM:
+      return { ...state, searchTerm: action.term }
     case ADD_FAVORITE:
       if (state.favoritesIds.indexOf(action.payload) === -1) {
         return { ...state, favoritesIds: [ ...state.favoritesIds, action.payload ] }
@@ -34,10 +39,7 @@ export default function(state = defaultState, action) {
     case GET_FAVORITES:
       return { ...state, favoriteGifs: makeGifDisplayObjects(action.payload.data) }
     case REMOVE_FAVORITE:
-      if (state.favoritesIds.indexOf(action.payload) !== -1) {
-        return { ...state, favoritesIds: state.favoritesIds.filter(g => g !== action.payload) }
-      }
-      return state;
+      return { ...state, favoritesIds: state.favoritesGifs.filter(g => g !== action.payload) }
     default:
       return state;
   }

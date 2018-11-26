@@ -1,12 +1,13 @@
 import { searchForGifs, getGifsByIds } from '../apis/GiphyRequests';
 
 export const SEARCH = 'search_gifs';
+export const UPDATE_SEARCH_TERM = 'update_search_term';
 export const ADD_FAVORITE = 'add_favorite';
 export const GET_FAVORITES = 'get_favorites';
 export const REMOVE_FAVORITE = 'remove_favorite';
 
 export const getGifsBySearchTerm = term => dispatch => {
-  let gifs = searchForGifs(term)
+  searchForGifs(term)
     .then(
       res => {
         dispatch({
@@ -16,6 +17,13 @@ export const getGifsBySearchTerm = term => dispatch => {
       },
       err => console.log(err)
     );
+}
+
+export const updateSearchTerm = term => {
+  return {
+    type: UPDATE_SEARCH_TERM,
+    term
+  }
 }
 
 export const makeFavorite = id => {
@@ -33,7 +41,7 @@ export const removeFavorite = id => {
 }
 
 export const retrieveGifsByIds = ids => dispatch => {
-  let gifs = getGifsByIds(ids)
+  getGifsByIds(ids)
     .then(
       res => {
 
