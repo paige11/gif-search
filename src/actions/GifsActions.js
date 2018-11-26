@@ -9,13 +9,17 @@ export const getGifsBySearchTerm = term => dispatch => {
   searchForGifs(term)
     .then(
       res => {
-        dispatch({
-          type: SEARCH,
-          payload: res.data
-        });
+        dispatch(updateSearchResults(res.data.data));
       },
       err => console.log(err)
     );
+}
+
+export const updateSearchResults = results => {
+  return {
+    type: SEARCH,
+    payload: results
+  }
 }
 
 export const updateSearchTerm = term => {

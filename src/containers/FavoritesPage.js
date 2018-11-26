@@ -33,8 +33,8 @@ class FavoritesPage extends Component {
 }
 
 FavoritesPage.propTypes = {
-  favoritesIds: PropTypes.array.required,
-  removeFavorite: PropTypes.func.required
+  favoritesIds: PropTypes.array.isRequired,
+  removeFavorite: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {

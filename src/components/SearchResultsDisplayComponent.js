@@ -18,8 +18,8 @@ const SearchResultsDisplayComponent = ({ results, makeFavorite }) => {
 }
 
 SearchResultsDisplayComponent.propTypes = {
-  results: PropTypes.array.required,
-  makeFavorite: PropTypes.func.required
+  results: PropTypes.array.isRequired,
+  makeFavorite: PropTypes.func.isRequired
 }
 
 export default SearchResultsDisplayComponent;

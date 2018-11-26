@@ -9,11 +9,11 @@ const GifDisplayComponent = ({ url, description, id, onClickFunction, clickText 
 );
 
 GifDisplayComponent.propTypes = {
-  url: PropTypes.string.required,
-  description: PropTypes.string.required,
-  id: PropTypes.string.required,
-  onClickFunction: PropTypes.func.required,
-  clickText: PropTypes.string.required
+  url: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClickFunction: PropTypes.func.isRequired,
+  clickText: PropTypes.string.isRequired
 }
 
 export default GifDisplayComponent;

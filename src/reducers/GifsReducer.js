@@ -17,7 +17,7 @@ export default function(state = defaultState, action) {
     case SEARCH:
       return {
         ...state,
-        searchResults: makeGifDisplayObjects(action.payload.data)
+        searchResults: makeGifDisplayObjects(action.payload)
       }
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.term }

@@ -18,8 +18,8 @@ const FavoritesDisplayComponent = ({ results, removeFavorite }) => {
 }
 
 FavoritesDisplayComponent.propTypes = {
-  results: PropTypes.array.required,
-  removeFavorite: PropTypes.func.required
+  results: PropTypes.array.isRequired,
+  removeFavorite: PropTypes.func.isRequired
 }
 
 export default FavoritesDisplayComponent;
