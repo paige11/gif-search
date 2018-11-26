@@ -12,7 +12,7 @@ class FavoritesPage extends Component {
   }
 
   componentDidMount = () => {
-    if (this.props.favoritesIds) {
+    if (this.props.favoritesIds.length) {
       getGifsByIds(this.props.favoritesIds)
         .then(
           res => {
@@ -26,7 +26,10 @@ class FavoritesPage extends Component {
   render() {
     if (this.state.favorites) {
       return (
-        <FavoritesDisplayComponent results={this.state.favorites} removeFavorite={this.props.removeFavorite} />
+        <FavoritesDisplayComponent
+          results={this.state.favorites}
+          removeFavorite={this.props.removeFavorite}
+        />
       )
     }
   }
@@ -37,8 +40,8 @@ FavoritesPage.propTypes = {
   removeFavorite: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
-  return { ...state.gifs };
+const mapStateToProps = state => {
+  return { ...state.gifs }
 }
 
 export default connect(mapStateToProps, { removeFavorite })(FavoritesPage);

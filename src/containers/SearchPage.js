@@ -31,7 +31,10 @@ class SearchPage extends Component {
           searchTerm={this.props.searchTerm}
           clearSearch={this.clearSearch} //paige
         />
-        <SearchResultsDisplayComponent results={this.props.searchResults} makeFavorite={this.props.makeFavorite} />
+        <SearchResultsDisplayComponent
+          results={this.props.searchResults}
+          makeFavorite={this.props.makeFavorite}
+        />
       </div>
     )
   }
@@ -45,8 +48,17 @@ SearchPage.propTypes = {
   makeFavorite: PropTypes.func.isRequired
 }
 
-function mapStateToProps(state) {
-  return { ...state.gifs };
+const mapStateToProps = state => {
+  return { ...state.gifs }
 }
 
-export default connect(mapStateToProps, { updateSearchTerm, getGifsBySearchTerm, makeFavorite, updateSearchResults })(SearchPage);
+const mapDispatchToProps = dispatch => {
+  return {
+    updateSearchTerm: term => dispatch(updateSearchTerm(term)),
+    updateSearchResults: results => dispatch(updateSearchResults(results)),
+    getGifsBySearchTerm: term => dispatch(getGifsBySearchTerm(term)),
+    makeFavorite: id => dispatch(makeFavorite(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
