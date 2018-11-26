@@ -11,6 +11,6 @@ export const searchForGifs = searchString => {
 
 export const getGifsByIds = ids => {
   let idsString = ids.join();
-  debugger
+
   return axios.get(`${BASE_URL}?ids=${idsString}&api_key=${PUBLIC_KEY}`);
 }

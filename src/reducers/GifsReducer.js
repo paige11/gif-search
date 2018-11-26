@@ -2,44 +2,38 @@ import {
   SEARCH,
   UPDATE_SEARCH_TERM,
   ADD_FAVORITE,
-  GET_FAVORITES,
   REMOVE_FAVORITE
 } from '../actions/GifsActions';
-import _ from "lodash";
+import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 
 const defaultState = {
   searchTerm: '',
   searchResults: [],
-  favoritesIds: [],
-  favoriteGifs: [],
+  favoritesIds: []
 };
-
-const makeGifDisplayObjects = data => {
-  return data.map(gif => {
-    return {
-      id: gif.id,
-      fixedWidthUrl: gif.images.fixed_width.url,
-      description: gif.title,
-      url: gif.images.original.url
-    }
-  });
-}
 
 export default function(state = defaultState, action) {
   switch (action.type) {
     case SEARCH:
-      return { ...state, searchResults: makeGifDisplayObjects(action.payload.data) }
+      return {
+        ...state,
+        searchResults: makeGifDisplayObjects(action.payload.data)
+      }
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.term }
     case ADD_FAVORITE:
-      if (state.favoritesIds.indexOf(action.payload) === -1) {
-        return { ...state, favoritesIds: [ ...state.favoritesIds, action.payload ] }
+      if (state.favoritesIds.indexOf(action.id) === -1) {
+        return {
+          ...state,
+          favoritesIds: [ ...state.favoritesIds, action.id ]
+        }
       }
       return state;
-    case GET_FAVORITES:
-      return { ...state, favoriteGifs: makeGifDisplayObjects(action.payload.data) }
     case REMOVE_FAVORITE:
-      return { ...state, favoritesIds: state.favoritesGifs.filter(g => g !== action.payload) }
+      return {
+        ...state,
+        favoritesIds: state.favoritesIds.filter(id => id !== action.id)
+      }
     default:
       return state;
   }
