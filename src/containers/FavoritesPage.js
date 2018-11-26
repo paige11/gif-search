@@ -4,6 +4,7 @@ import { removeFavorite } from '../actions/GifsActions';
 import FavoritesDisplayComponent from '../components/FavoritesDisplayComponent';
 import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 import { getGifsByIds } from '../apis/GiphyRequests';
+import PropTypes from 'prop-types';
 
 class FavoritesPage extends Component {
   state = {
@@ -29,6 +30,11 @@ class FavoritesPage extends Component {
       )
     }
   }
+}
+
+FavoritesPage.propTypes = {
+  favoritesIds: PropTypes.array.required,
+  removeFavorite: PropTypes.func.required
 }
 
 function mapStateToProps(state) {

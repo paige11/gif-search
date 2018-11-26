@@ -1,5 +1,5 @@
 import React from 'react';
-import './GifDisplayComponent.css';
+import PropTypes from 'prop-types';
 
 const GifDisplayComponent = ({ url, description, id, onClickFunction, clickText }) => (
   <div>
@@ -7,5 +7,13 @@ const GifDisplayComponent = ({ url, description, id, onClickFunction, clickText 
     <p onClick={() => onClickFunction(id)}>{clickText}</p>
   </div>
 );
+
+GifDisplayComponent.propTypes = {
+  url: PropTypes.string.required,
+  description: PropTypes.string.required,
+  id: PropTypes.string.required,
+  onClickFunction: PropTypes.func.required,
+  clickText: PropTypes.string.required
+}
 
 export default GifDisplayComponent;

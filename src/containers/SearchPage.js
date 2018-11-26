@@ -4,6 +4,7 @@ import SearchFormComponent from '../components/SearchFormComponent';
 import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
 import { updateSearchTerm, getGifsBySearchTerm, makeFavorite } from '../actions/GifsActions';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class SearchPage extends Component {
   handleSubmit = e => {
@@ -28,6 +29,14 @@ class SearchPage extends Component {
       </div>
     )
   }
+}
+
+SearchPage.propTypes = {
+  getGifsBySearchTerm: PropTypes.func.required,
+  updateSearchTerm: PropTypes.func.required,
+  searchTerm: PropTypes.string.required,
+  searchResults: PropTypes.array.required,
+  makeFavorite: PropTypes.func.required
 }
 
 function mapStateToProps(state) {

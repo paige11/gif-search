@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SearchFormComponent = ({ handleSubmit, handleChange, searchTerm }) => (
   <form onSubmit={handleSubmit}>
@@ -6,5 +7,11 @@ const SearchFormComponent = ({ handleSubmit, handleChange, searchTerm }) => (
     <button type="submit">Search</button>
   </form>
 );
+
+SearchFormComponent.propTypes = {
+  handleSubmit: PropTypes.func.required,
+  handleChange: PropTypes.func.required,
+  searchTerm: PropTypes.string.required
+}
 
 export default SearchFormComponent;

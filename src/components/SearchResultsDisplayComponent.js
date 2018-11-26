@@ -1,5 +1,6 @@
 import React from 'react';
 import GifDisplayComponent from './GifDisplayComponent';
+import PropTypes from 'prop-types';
 
 const SearchResultsDisplayComponent = ({ results, makeFavorite }) => {
   return <div>
@@ -14,6 +15,11 @@ const SearchResultsDisplayComponent = ({ results, makeFavorite }) => {
       }
     )}
   </div>
+}
+
+SearchResultsDisplayComponent.propTypes = {
+  results: PropTypes.array.required,
+  makeFavorite: PropTypes.func.required
 }
 
 export default SearchResultsDisplayComponent;
