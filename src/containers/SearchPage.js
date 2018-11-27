@@ -24,7 +24,6 @@ class SearchPage extends Component {
   render() {
     return (
       <div>
-        <Link to="/favorites">Favorites</Link>
         <SearchFormComponent
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}

@@ -1,10 +1,10 @@
+import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 import {
   SEARCH,
   UPDATE_SEARCH_TERM,
   ADD_FAVORITE,
   REMOVE_FAVORITE
 } from '../actions/GifsActions';
-import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 
 const defaultState = {
   searchTerm: '',

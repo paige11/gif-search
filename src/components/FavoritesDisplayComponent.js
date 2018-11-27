@@ -2,20 +2,22 @@ import React from 'react';
 import GifDisplayComponent from './GifDisplayComponent';
 import PropTypes from 'prop-types';
 
-const FavoritesDisplayComponent = ({ results, removeFavorite }) => {
-  return <div>
+const FavoritesDisplayComponent = ({ results, removeFavorite }) => (
+  <div>
     {results.map(r => {
-        return <GifDisplayComponent
-          url={r.fixedWidthUrl}
-          description={r.description}
-          key={r.id} id={r.id}
-          onClickFunction={removeFavorite}
-          clickText="Remove"
-        />
+        return (
+          <GifDisplayComponent
+            url={r.fixedWidthUrl}
+            description={r.description}
+            key={r.id} id={r.id}
+            onClickFunction={removeFavorite}
+            clickText="Remove"
+          />
+        )
       }
     )}
   </div>
-}
+);
 
 FavoritesDisplayComponent.propTypes = {
   results: PropTypes.array.isRequired,

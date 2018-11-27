@@ -1,0 +1,16 @@
+@import './utils/variables.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $main-font, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $bg-gray;
+}
+
+.screen {
+  width: 94%;
+  max-width: 710px;
+  margin: 7em auto 0px;
+}

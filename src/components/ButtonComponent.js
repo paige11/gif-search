@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './SearchFormComponent.scss';
+import './ButtonComponent.scss';
 
-const SearchFormComponent = ({ handleSubmit, handleChange, clearSearch, searchTerm }) => (
+const ButtonComponent = ({ handleSubmit, handleChange, clearSearch, searchTerm }) => (
   <div className="search-form-container">
     <h1>Search for GIFs</h1>
     <form onSubmit={handleSubmit} className="search-form">
@@ -20,11 +20,8 @@ const SearchFormComponent = ({ handleSubmit, handleChange, clearSearch, searchTe
   </div>
 );
 
-SearchFormComponent.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  clearSearch: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired
+ButtonComponent.propTypes = {
+
 }
 
-export default SearchFormComponent;
+export default ButtonComponent;
