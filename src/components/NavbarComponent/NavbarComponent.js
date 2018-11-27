@@ -3,15 +3,15 @@ import './NavbarComponent.scss';
 import { Link, NavLink } from 'react-router-dom';
 
 const NavbarComponent = () => (
-  <div class="navbar">
+  <div className="navbar">
     <Link to="/" className="logo-link">
       <h1 className="logo">GIFStash</h1>
     </Link>
 
     <nav className="nav-items">
-      <NavLink to="/favorites" className="nav-link">
-        <i class="fas fa-heart"></i>
-        My GIFs
+      <NavLink to="/your-gif-stash" className="nav-link">
+        <i className="fas fa-heart"></i>
+        Your GIFs
       </NavLink>
     </nav>
   </div>

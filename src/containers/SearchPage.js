@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchFormComponent from '../components/SearchFormComponent';
-import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
+import SearchFormComponent from '../components/SearchFormComponent/SearchFormComponent';
+import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent/SearchResultsDisplayComponent';
 import { updateSearchTerm, updateSearchResults, getGifsBySearchTerm, makeFavorite } from '../actions/GifsActions';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 class SearchPage extends Component {

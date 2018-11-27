@@ -1,9 +1,10 @@
 import React from 'react';
-import GifDisplayComponent from './GifDisplayComponent';
+import GifDisplayComponent from '../GifDisplayComponent/GifDisplayComponent';
 import PropTypes from 'prop-types';
+import '../MultiDisplayComponent.scss';
 
 const SearchResultsDisplayComponent = ({ results, makeFavorite }) => (
-  <div>
+  <div className="gifs-container">
     {results.map(r => {
         return (
           <GifDisplayComponent
@@ -11,7 +12,6 @@ const SearchResultsDisplayComponent = ({ results, makeFavorite }) => (
             description={r.description}
             key={r.id} id={r.id}
             onClickFunction={makeFavorite}
-            clickText="Stash"
           />
         )
       }

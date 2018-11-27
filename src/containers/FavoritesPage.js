@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeFavorite } from '../actions/GifsActions';
-import FavoritesDisplayComponent from '../components/FavoritesDisplayComponent';
+import FavoritesDisplayComponent from '../components/FavoritesDisplayComponent/FavoritesDisplayComponent';
 import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 import { getGifsByIds } from '../apis/GiphyRequests';
 import PropTypes from 'prop-types';

@@ -1,4 +1,4 @@
-@import '../utils/variables.scss';
+@import '../../utils/variables.scss';
 
 .navbar {
   position: fixed;
@@ -19,14 +19,14 @@ h1.logo {
 
 .logo-link {
   text-decoration: none;
-  color: #fff;
+  color: $white;
 }
 
 .nav-link {
   text-decoration: none;
   color: white;
   padding: 0.95em;
-  margin-left: 1.8em;
+  margin-left: 1.2em;
   font-weight: 700;
   border-bottom: 0.16em solid transparent;
   font-size: 1.2em;
@@ -38,10 +38,10 @@ h1.logo {
 }
 
 .active {
-  border-bottom: 0.16em solid #F1B03D;
+  border-bottom: 0.16em solid $yellow;
   opacity: 1;
 }
 
 .fa-heart {
-  margin-right: 0.7em;
+  margin-right: 0.5em;
 }

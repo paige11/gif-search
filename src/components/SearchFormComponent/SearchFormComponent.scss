@@ -1,4 +1,4 @@
-@import '../utils/variables.scss';
+@import '../../utils/variables.scss';
 
 .search-form, .search-form-container {
   display: flex;
@@ -13,4 +13,9 @@
   font-size: 1em;
   border-radius: 3px;
   border: 1px solid $dark-gray;
+  margin: 1em 0;
+
+  &:focus {
+    outline: 0;
+  }
 }
