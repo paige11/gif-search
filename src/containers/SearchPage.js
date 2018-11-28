@@ -6,10 +6,12 @@ import SearchForm from '../components/SearchForm';
 import SearchResultsDisplay from '../components/SearchResultsDisplay';
 import { getGifsBySearchTerm } from '../apis/GiphyRequests';
 import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
+import Loading from '../components/Loading';
 
 class SearchPage extends Component {
   state = {
-    searchResults: []
+    searchResults: [],
+    loading: false
   }
 
   componentDidMount = () => {
@@ -17,9 +19,11 @@ class SearchPage extends Component {
   }
 
   searchForGifs = () => {
+    this.setState({ loading: true })
     getGifsBySearchTerm(this.props.searchTerm)
       .then(
         res => {
+          this.setState({ loading: false });
           this.setState({ searchResults: makeGifDisplayObjects(res.data.data) });
         },
         err => console.log(err)
@@ -40,7 +44,7 @@ class SearchPage extends Component {
   }
 
   showIfResults = () => {
-    if (this.state.searchResults.length) {
+    if (!this.state.loading && this.state.searchResults.length) {
       return (
         <SearchResultsDisplay
           results={this.state.searchResults}
@@ -48,6 +52,14 @@ class SearchPage extends Component {
           currentFavoriteFunction={this.currentFavoriteFunction}
         />
       )
+    }
+  }
+
+  showIfLoading = () => {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
     }
   }
 
@@ -59,6 +71,7 @@ class SearchPage extends Component {
           handleSubmit={this.handleSubmit}
           searchTerm={this.props.searchTerm}
         />
+        {this.showIfLoading()}
         {this.showIfResults()}
       </div>
     )

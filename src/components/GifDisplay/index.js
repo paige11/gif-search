@@ -14,7 +14,7 @@ class GifDisplay extends Component {
       this.setState({ favoritedClass: cl });
     }
   }
-
+  // paige px loading favicon
   handleClick = () => {
     const { displayingFavorites, id } = this.props;
     let conditional = displayingFavorites ? 'hidden' : 'selected';
