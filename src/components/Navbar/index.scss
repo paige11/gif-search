@@ -1,5 +1,18 @@
 @import '../../utils/variables.scss';
 
+.fa-heart {
+  margin-right: 0.5rem;
+}
+
+.logo {
+  height: 3rem;
+}
+
+.logo-link {
+  text-decoration: none;
+  color: $white;
+}
+
 .navbar {
   position: fixed;
   width: 100%;
@@ -13,20 +26,11 @@
   height: 4.1rem;
 }
 
-h1.logo {
-  font-family: $logo-font;
-}
-
-.logo-link {
-  text-decoration: none;
-  color: $white;
-}
-
 .nav-link {
   text-decoration: none;
   color: white;
-  padding: 1.2rem;
-  margin-left: 1.2rem;
+  padding: 1.15rem;
+  margin-left: 1rem;
   font-weight: 700;
   border-bottom: 0.16rem solid transparent;
   font-size: 1.2rem;
@@ -38,10 +42,16 @@ h1.logo {
 }
 
 .active {
-  border-bottom: 0.16rem solid $yellow;
+  border-bottom: 0.16rem solid $pink;
   opacity: 1;
 }
 
-.fa-heart {
-  margin-right: 0.5rem;
+@media screen and (max-width: 600px) {
+  .fa-heart {
+    right: 0;
+  }
+
+  span.link-text {
+    display: none;
+  }
 }

@@ -1,17 +1,18 @@
 import React from 'react';
 import './index.scss';
 import { Link, NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => (
   <div className="navbar">
     <Link to="/" className="logo-link">
-      <h1 className="logo">GIFStash</h1>
+      <img src={logo} alt="logo" className="logo" />
     </Link>
 
     <nav className="nav-items">
       <NavLink to="/your-gif-stash" className="nav-link">
         <i className="fas fa-heart"></i>
-        Your GIFs
+        <span className="link-text">Your GIFs</span>
       </NavLink>
     </nav>
   </div>
