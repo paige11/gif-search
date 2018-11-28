@@ -1,0 +1,38 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import './index.scss';
+
+class GifDisplay extends Component {
+  state = {
+    clickedClass: ''
+  }
+
+  handleClick = () => {
+    const { favorited, id } = this.props;
+    let conditional = favorited ? 'hidden' : 'selected';
+    this.setState({ clickedClass: conditional });
+    this.props.onClickFunction(id);
+  }
+
+  render() {
+    const { url, description } = this.props;
+
+    return (
+      <img
+        src={url}
+        alt={description}
+        onClick={() => this.handleClick()}
+        className={`gif ${this.state.clickedClass}`}
+      />
+    )
+  }
+}
+
+GifDisplay.propTypes = {
+  url: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClickFunction: PropTypes.func
+}
+
+export default GifDisplay;

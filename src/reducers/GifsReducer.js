@@ -14,13 +14,6 @@ const defaultState = {
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case SEARCH:
-      return {
-        ...state,
-        searchResults: makeGifDisplayObjects(action.payload)
-      }
-    case UPDATE_SEARCH_TERM:
-      return { ...state, searchTerm: action.term }
     case ADD_FAVORITE:
       if (state.favoritesIds.indexOf(action.id) === -1) {
         return {
@@ -30,10 +23,10 @@ export default function(state = defaultState, action) {
       }
       return state;
     case REMOVE_FAVORITE:
-      return {
-        ...state,
-        favoritesIds: state.favoritesIds.filter(id => id !== action.id)
-      }
+       return {
+         ...state,
+         favoritesIds: state.favoritesIds.filter(id => id !== action.id)
+       }
     default:
       return state;
   }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeFavorite } from '../actions/GifsActions';
-import FavoritesDisplayComponent from '../components/FavoritesDisplayComponent/FavoritesDisplayComponent';
+import PropTypes from 'prop-types';
 import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 import { getGifsByIds } from '../apis/GiphyRequests';
-import PropTypes from 'prop-types';
+import { removeFavorite } from '../actions/GifsActions';
+import FavoritesDisplay from '../components/FavoritesDisplay';
 
 class FavoritesPage extends Component {
   state = {
@@ -24,10 +24,12 @@ class FavoritesPage extends Component {
   }
 
   render() {
-    if (this.state.favorites) {
+    const { favorites } = this.state;
+
+    if (favorites) {
       return (
-        <FavoritesDisplayComponent
-          results={this.state.favorites}
+        <FavoritesDisplay
+          results={favorites}
           removeFavorite={this.props.removeFavorite}
         />
       )
@@ -36,8 +38,7 @@ class FavoritesPage extends Component {
 }
 
 FavoritesPage.propTypes = {
-  favoritesIds: PropTypes.array.isRequired,
-  removeFavorite: PropTypes.func.isRequired
+  favoritesIds: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => {

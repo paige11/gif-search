@@ -1,8 +1,8 @@
 import React from 'react';
-import './NavbarComponent.scss';
+import './index.scss';
 import { Link, NavLink } from 'react-router-dom';
 
-const NavbarComponent = () => (
+const Navbar = () => (
   <div className="navbar">
     <Link to="/" className="logo-link">
       <h1 className="logo">GIFStash</h1>
@@ -17,4 +17,4 @@ const NavbarComponent = () => (
   </div>
 );
 
-export default NavbarComponent;
+export default Navbar;

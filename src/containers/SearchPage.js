@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchFormComponent from '../components/SearchFormComponent/SearchFormComponent';
-import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent/SearchResultsDisplayComponent';
-import { updateSearchTerm, updateSearchResults, getGifsBySearchTerm, makeFavorite } from '../actions/GifsActions';
+import SearchForm from '../components/SearchForm';
+import SearchResultsDisplay from '../components/SearchResultsDisplay';
+import {
+  updateSearchTerm,
+  updateSearchResults,
+  getGifsBySearchTerm,
+  makeFavorite
+} from '../actions/GifsActions';
 import PropTypes from 'prop-types';
 
 class SearchPage extends Component {
@@ -15,24 +20,26 @@ class SearchPage extends Component {
     this.props.updateSearchTerm(e.target.value);
   }
 
-  clearSearch = () => {
-    this.props.updateSearchTerm('');
-    this.props.updateSearchResults([]);
+  showIfResults = () => {
+    if (this.props.searchResults.length) {
+      return (
+        <SearchResultsDisplay
+          results={this.props.searchResults}
+          makeFavorite={this.props.makeFavorite}
+        />
+      )
+    }
   }
 
   render() {
     return (
       <div>
-        <SearchFormComponent
+        <SearchForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           searchTerm={this.props.searchTerm}
-          clearSearch={this.clearSearch} //paige
         />
-        <SearchResultsDisplayComponent
-          results={this.props.searchResults}
-          makeFavorite={this.props.makeFavorite}
-        />
+        {this.showIfResults()}
       </div>
     )
   }
