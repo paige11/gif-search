@@ -1,6 +1,4 @@
-import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 import {
-  SEARCH,
   UPDATE_SEARCH_TERM,
   ADD_FAVORITE,
   REMOVE_FAVORITE
@@ -8,17 +6,11 @@ import {
 
 const defaultState = {
   searchTerm: '',
-  searchResults: [],
   favoritesIds: []
 };
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case SEARCH:
-      return {
-        ...state,
-        searchResults: makeGifDisplayObjects(action.payload)
-      }
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.term }
     case ADD_FAVORITE:

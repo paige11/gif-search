@@ -17,7 +17,7 @@ const FavoritesDisplay = ({ results, removeFavorite }) => (
               onClickFunction={removeFavorite}
               displayingFavorites={true}
             />
-          )
+          );
         }
       )}
     </div>

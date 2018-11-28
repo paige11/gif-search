@@ -1,19 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { updateSearchTerm, makeFavorite } from '../actions/GifsActions';
 import SearchForm from '../components/SearchForm';
 import SearchResultsDisplay from '../components/SearchResultsDisplay';
-import {
-  updateSearchTerm,
-  updateSearchResults,
-  getGifsBySearchTerm,
-  makeFavorite
-} from '../actions/GifsActions';
-import PropTypes from 'prop-types';
+import { getGifsBySearchTerm } from '../apis/GiphyRequests';
+import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 
 class SearchPage extends Component {
+  state = {
+    searchResults: []
+  }
+
+  componentDidMount = () => {
+    if (this.props.searchTerm) this.searchForGifs();
+  }
+
+  searchForGifs = () => {
+    getGifsBySearchTerm(this.props.searchTerm)
+      .then(
+        res => {
+          this.setState({ searchResults: makeGifDisplayObjects(res.data.data) });
+        },
+        err => console.log(err)
+      );
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.getGifsBySearchTerm(this.props.searchTerm);
+    this.searchForGifs();
   }
 
   handleChange = e => {
@@ -25,10 +40,10 @@ class SearchPage extends Component {
   }
 
   showIfResults = () => {
-    if (this.props.searchResults.length) {
+    if (this.state.searchResults.length) {
       return (
         <SearchResultsDisplay
-          results={this.props.searchResults}
+          results={this.state.searchResults}
           makeFavorite={this.props.makeFavorite}
           currentFavoriteFunction={this.currentFavoriteFunction}
         />
@@ -51,10 +66,6 @@ class SearchPage extends Component {
 }
 
 SearchPage.propTypes = {
-  getGifsBySearchTerm: PropTypes.func.isRequired,
-  updateSearchTerm: PropTypes.func.isRequired,
-  searchTerm: PropTypes.string.isRequired,
-  searchResults: PropTypes.array.isRequired,
   makeFavorite: PropTypes.func.isRequired
 }
 
@@ -62,13 +73,4 @@ const mapStateToProps = state => {
   return { ...state.gifs }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateSearchTerm: term => dispatch(updateSearchTerm(term)),
-    updateSearchResults: results => dispatch(updateSearchResults(results)),
-    getGifsBySearchTerm: term => dispatch(getGifsBySearchTerm(term)),
-    makeFavorite: id => dispatch(makeFavorite(id))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default connect(mapStateToProps, { updateSearchTerm, makeFavorite })(SearchPage);

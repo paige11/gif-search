@@ -32,7 +32,7 @@ class FavoritesPage extends Component {
           results={favorites}
           removeFavorite={this.props.removeFavorite}
         />
-      )
+      );
     }
   }
 }

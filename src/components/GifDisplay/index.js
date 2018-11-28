@@ -11,7 +11,7 @@ class GifDisplay extends Component {
   componentDidMount = () => {
     if (!this.props.displayingFavorites) {
       let cl = this.props.currentFavoriteFunction(this.props.id) ? 'selected' : '';
-      this.setState({ favoritedClass: cl })
+      this.setState({ favoritedClass: cl });
     }
   }
 
@@ -23,7 +23,7 @@ class GifDisplay extends Component {
   }
 
   render() {
-    const { url, description, currentFavoriteFunction, id } = this.props;
+    const { url, description, id } = this.props;
 
     return (
       <img
