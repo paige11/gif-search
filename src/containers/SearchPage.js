@@ -20,12 +20,17 @@ class SearchPage extends Component {
     this.props.updateSearchTerm(e.target.value);
   }
 
+  isCurrentFavorite = id => {
+    return this.props.favoritesIds.indexOf(id) !== -1;
+  }
+
   showIfResults = () => {
     if (this.props.searchResults.length) {
       return (
         <SearchResultsDisplay
           results={this.props.searchResults}
           makeFavorite={this.props.makeFavorite}
+          isCurrentFavorite={this.isCurrentFavorite}
         />
       )
     }

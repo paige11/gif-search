@@ -4,7 +4,15 @@ import './index.scss';
 
 class GifDisplay extends Component {
   state = {
-    clickedClass: ''
+    clickedClass: '',
+    previousFavoriteClass: ''
+  }
+
+  componentDidMount = () => {
+    if (!this.props.favorited) {
+      let ok = this.props.isCurrentFavorite(this.props.id) ? 'selected' : '';
+      this.setState({ previousFavoriteClass: ok })
+    }
   }
 
   handleClick = () => {
@@ -15,14 +23,14 @@ class GifDisplay extends Component {
   }
 
   render() {
-    const { url, description } = this.props;
+    const { url, description, isCurrentFavorite, id } = this.props;
 
     return (
       <img
         src={url}
         alt={description}
         onClick={() => this.handleClick()}
-        className={`gif ${this.state.clickedClass}`}
+        className={`gif ${this.state.previousFavoriteClass} ${this.state.clickedClass}`}
       />
     )
   }
