@@ -1,37 +1,89 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import SearchFormComponent from '../components/SearchFormComponent';
-import SearchResultsDisplayComponent from '../components/SearchResultsDisplayComponent';
-import { updateSearchTerm, getGifsBySearchTerm, makeFavorite } from '../actions/GifsActions';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { updateSearchTerm, makeFavorite } from '../actions/GifsActions';
+import SearchForm from '../components/SearchForm';
+import SearchResultsDisplay from '../components/SearchResultsDisplay';
+import { getGifsBySearchTerm } from '../apis/GiphyRequests';
+import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
+import Loading from '../components/Loading';
 
 class SearchPage extends Component {
+  state = {
+    searchResults: [],
+    loading: false
+  }
+
+  componentDidMount = () => {
+    if (this.props.searchTerm) this.searchForGifs();
+  }
+
+  searchForGifs = () => {
+    this.setState({ loading: true })
+    getGifsBySearchTerm(this.props.searchTerm)
+      .then(
+        res => {
+          this.setState({ loading: false });
+          this.setState({ searchResults: makeGifDisplayObjects(res.data.data) });
+        },
+        err => console.log(err)
+      );
+  }
+
   handleSubmit = e => {
     e.preventDefault();
-    this.props.getGifsBySearchTerm(this.props.searchTerm);
+    this.searchForGifs();
   }
 
   handleChange = e => {
     this.props.updateSearchTerm(e.target.value);
   }
 
+  currentFavoriteFunction = id => {
+    return this.props.favoritesIds.indexOf(id) !== -1;
+  }
+
+  showIfResults = () => {
+    if (!this.state.loading && this.state.searchResults.length) {
+      return (
+        <SearchResultsDisplay
+          results={this.state.searchResults}
+          makeFavorite={this.props.makeFavorite}
+          currentFavoriteFunction={this.currentFavoriteFunction}
+        />
+      )
+    }
+  }
+
+  showIfLoading = () => {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
+    }
+  }
+
   render() {
     return (
       <div>
-        <Link to="/favorites">Favorites</Link>
-        <SearchFormComponent
+        <SearchForm
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           searchTerm={this.props.searchTerm}
         />
-        <SearchResultsDisplayComponent results={this.props.searchResults} makeFavorite={this.props.makeFavorite} />
+        {this.showIfLoading()}
+        {this.showIfResults()}
       </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  return { ...state.gifs };
+SearchPage.propTypes = {
+  makeFavorite: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, { updateSearchTerm, getGifsBySearchTerm, makeFavorite })(SearchPage);
+const mapStateToProps = state => {
+  return { ...state.gifs }
+}
+
+export default connect(mapStateToProps, { updateSearchTerm, makeFavorite })(SearchPage);

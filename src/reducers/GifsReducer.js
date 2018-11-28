@@ -1,24 +1,16 @@
 import {
-  SEARCH,
   UPDATE_SEARCH_TERM,
   ADD_FAVORITE,
   REMOVE_FAVORITE
 } from '../actions/GifsActions';
-import { makeGifDisplayObjects } from '../utils/GifDisplayFunctions';
 
 const defaultState = {
   searchTerm: '',
-  searchResults: [],
   favoritesIds: []
 };
 
 export default function(state = defaultState, action) {
   switch (action.type) {
-    case SEARCH:
-      return {
-        ...state,
-        searchResults: makeGifDisplayObjects(action.payload.data)
-      }
     case UPDATE_SEARCH_TERM:
       return { ...state, searchTerm: action.term }
     case ADD_FAVORITE:
@@ -30,10 +22,10 @@ export default function(state = defaultState, action) {
       }
       return state;
     case REMOVE_FAVORITE:
-      return {
-        ...state,
-        favoritesIds: state.favoritesIds.filter(id => id !== action.id)
-      }
+       return {
+         ...state,
+         favoritesIds: state.favoritesIds.filter(id => id !== action.id)
+       }
     default:
       return state;
   }
