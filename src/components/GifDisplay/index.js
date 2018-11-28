@@ -23,7 +23,7 @@ class GifDisplay extends Component {
   }
 
   render() {
-    const { url, description, id } = this.props;
+    const { url, description } = this.props;
 
     return (
       <img

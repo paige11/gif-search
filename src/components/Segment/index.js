@@ -8,4 +8,8 @@ const Segment = ({ children }) => (
   </div>
 );
 
+Segment.propTypes = {
+  children: PropTypes.node.isRequired
+}
+
 export default Segment;

@@ -6,7 +6,7 @@ import Segment from '../Segment';
 const SearchForm = ({ handleSubmit, handleChange, searchTerm }) => (
   <Segment>
     <h3 className="title">Search for GIFs</h3>
-    <p>Enter a term to search for GIFs. Click on a GIF to add it to your stash.</p>
+    <p>Enter a term to search for GIFs.</p>
     <form onSubmit={handleSubmit} className="search-form">
       <input
         type="text"

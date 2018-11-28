@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../MultiDisplayComponent.scss';
 import GifDisplay from '../GifDisplay';
+import Segment from '../Segment';
 
 const FavoritesDisplay = ({ results, removeFavorite }) => (
-  <div>
-    <h1>Your GIFs</h1>
+  <Segment>
+    <h3 className="title">Your GIFs</h3>
+    <p>Click on a GIF to remove it from your stash.</p>
     <div className="gifs-container">
       {results.map(r => {
           return (
@@ -21,7 +23,7 @@ const FavoritesDisplay = ({ results, removeFavorite }) => (
         }
       )}
     </div>
-  </div>
+  </Segment>
 );
 
 FavoritesDisplay.propTypes = {

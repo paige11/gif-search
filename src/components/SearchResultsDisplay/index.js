@@ -6,6 +6,8 @@ import Segment from '../Segment';
 
 const SearchResultsDisplay = ({ results, makeFavorite, currentFavoriteFunction }) => (
   <Segment>
+    <h3 className="title">Search Results</h3>
+    <p>Click on a GIF to add it to your stash.</p>
     <div className="gifs-container">
       {results.map(r => {
           return (
@@ -18,7 +20,7 @@ const SearchResultsDisplay = ({ results, makeFavorite, currentFavoriteFunction }
               onClickFunction={makeFavorite}
               displayingFavorites={false}
             />
-          )
+          );
         }
       )}
     </div>
