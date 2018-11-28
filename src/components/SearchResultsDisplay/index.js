@@ -4,7 +4,7 @@ import '../MultiDisplayComponent.scss';
 import GifDisplay from '../GifDisplay';
 import Segment from '../Segment';
 
-const SearchResultsDisplay = ({ results, makeFavorite, isCurrentFavorite }) => (
+const SearchResultsDisplay = ({ results, makeFavorite, currentFavoriteFunction }) => (
   <Segment>
     <div className="gifs-container">
       {results.map(r => {
@@ -14,9 +14,9 @@ const SearchResultsDisplay = ({ results, makeFavorite, isCurrentFavorite }) => (
               description={r.description}
               key={r.id}
               id={r.id}
-              isCurrentFavorite={isCurrentFavorite}
+              currentFavoriteFunction={currentFavoriteFunction}
               onClickFunction={makeFavorite}
-              favorited={false}
+              displayingFavorites={false}
             />
           )
         }

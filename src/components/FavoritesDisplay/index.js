@@ -15,7 +15,7 @@ const FavoritesDisplay = ({ results, removeFavorite }) => (
               key={r.id}
               id={r.id}
               onClickFunction={removeFavorite}
-              favorited={true}
+              displayingFavorites={true}
             />
           )
         }

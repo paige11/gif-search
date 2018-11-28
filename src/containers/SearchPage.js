@@ -20,7 +20,7 @@ class SearchPage extends Component {
     this.props.updateSearchTerm(e.target.value);
   }
 
-  isCurrentFavorite = id => {
+  currentFavoriteFunction = id => {
     return this.props.favoritesIds.indexOf(id) !== -1;
   }
 
@@ -30,7 +30,7 @@ class SearchPage extends Component {
         <SearchResultsDisplay
           results={this.props.searchResults}
           makeFavorite={this.props.makeFavorite}
-          isCurrentFavorite={this.isCurrentFavorite}
+          currentFavoriteFunction={this.currentFavoriteFunction}
         />
       )
     }

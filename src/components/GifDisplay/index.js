@@ -5,32 +5,32 @@ import './index.scss';
 class GifDisplay extends Component {
   state = {
     clickedClass: '',
-    previousFavoriteClass: ''
+    favoritedClass: ''
   }
 
   componentDidMount = () => {
-    if (!this.props.favorited) {
-      let ok = this.props.isCurrentFavorite(this.props.id) ? 'selected' : '';
-      this.setState({ previousFavoriteClass: ok })
+    if (!this.props.displayingFavorites) {
+      let cl = this.props.currentFavoriteFunction(this.props.id) ? 'selected' : '';
+      this.setState({ favoritedClass: cl })
     }
   }
 
   handleClick = () => {
-    const { favorited, id } = this.props;
-    let conditional = favorited ? 'hidden' : 'selected';
+    const { displayingFavorites, id } = this.props;
+    let conditional = displayingFavorites ? 'hidden' : 'selected';
     this.setState({ clickedClass: conditional });
     this.props.onClickFunction(id);
   }
 
   render() {
-    const { url, description, isCurrentFavorite, id } = this.props;
+    const { url, description, currentFavoriteFunction, id } = this.props;
 
     return (
       <img
         src={url}
         alt={description}
         onClick={() => this.handleClick()}
-        className={`gif ${this.state.previousFavoriteClass} ${this.state.clickedClass}`}
+        className={`gif ${this.state.favoritedClass} ${this.state.clickedClass}`}
       />
     )
   }
